@@ -7,6 +7,8 @@ backupBasedir = "/mnt/backup/git/"
 gitBasedir = "/home/git/"
 
 # ukrainianside
-subprocess.call("tar cvf " + backupBasedir + "ukrainianside/" + now + ".tar " + gitBasedir + "ukrainianside/*", shell=True)
-subprocess.call("gzip -9 " + backupBasedir + "ukrainianside/" + now + ".tar", shell=True)
-#subprocess.call("rm " + backupBasedir + "ukrainianside/" + now + ".tar", shell=True)
+usTar = backupBasedir + "ukrainianside/" + now + ".tar"
+
+subprocess.call("tar cvf " + usTar + " " + gitBasedir + "ukrainianside/*", shell=True)
+subprocess.call("gzip -9 " + usTar, shell=True)
+
