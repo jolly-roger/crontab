@@ -1,5 +1,6 @@
 import subprocess
 import datetime
+import tarfile
 
 
 now = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -19,6 +20,7 @@ tarproject("ukrainianside")
 
 def tarproject(pName):
     pTar = backupBasedir + pName + "/" + now + ".tar"
-    
-    subprocess.call("tar cvf " + pTar + " " + gitBasedir + pName + "/*", shell=True)
-    subprocess.call("gzip -9 " + pTar, shell=True)
+
+    tar = tarfile.open(pTar, "w:gz")
+    tar.add(gitBasedir + pName)
+    tar.close()
