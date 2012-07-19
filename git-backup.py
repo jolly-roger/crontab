@@ -1,6 +1,8 @@
 import subprocess
 import datetime
 import tarfile
+import os
+import os.path
 
 
 now = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -9,6 +11,9 @@ gitBasedir = "/home/git/"
 
 
 def tarproject(pName):
+    if not os.path.isdir(backupBasedir + pName):
+        os.mkdir(backupBasedir + pName)
+    
     pTar = backupBasedir + pName + "/" + now + ".tar.gz"
 
     tar = tarfile.open(pTar, "w:gz")
