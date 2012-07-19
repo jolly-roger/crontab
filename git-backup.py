@@ -8,6 +8,14 @@ backupBasedir = "/mnt/backup/git/"
 gitBasedir = "/home/git/"
 
 
+def tarproject(pName):
+    pTar = backupBasedir + pName + "/" + now + ".tar"
+
+    tar = tarfile.open(pTar, "w:gz")
+    tar.add(gitBasedir + pName)
+    tar.close()
+
+
 tarproject("auth")
 tarproject("crontab")
 tarproject("hikesrilanka")
@@ -16,11 +24,3 @@ tarproject("hyqd")
 tarproject("hytcpd")
 tarproject("picpuk")
 tarproject("ukrainianside")
-
-
-def tarproject(pName):
-    pTar = backupBasedir + pName + "/" + now + ".tar"
-
-    tar = tarfile.open(pTar, "w:gz")
-    tar.add(gitBasedir + pName)
-    tar.close()
