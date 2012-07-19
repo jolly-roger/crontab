@@ -9,7 +9,7 @@ gitBasedir = "/home/git/"
 
 
 def tarproject(pName):
-    pTar = backupBasedir + pName + "/" + now + ".tar"
+    pTar = backupBasedir + pName + "/" + now + ".tar.gz"
 
     tar = tarfile.open(pTar, "w:gz")
     tar.add(gitBasedir + pName)
