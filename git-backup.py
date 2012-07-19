@@ -11,13 +11,15 @@ gitBasedir = "/home/git/"
 
 
 def tarproject(pName):
+    os.chdir(gitBasedir)
+    
     if not os.path.isdir(backupBasedir + pName):
         os.mkdir(backupBasedir + pName)
     
     pTar = backupBasedir + pName + "/" + now + ".tar.gz"
 
     tar = tarfile.open(pTar, "w:gz")
-    tar.add(gitBasedir + pName)
+    tar.add(pName)
     tar.close()
 
 
