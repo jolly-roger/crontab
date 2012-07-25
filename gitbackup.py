@@ -21,13 +21,13 @@ def tarproject(pName):
     tar = tarfile.open(pTar, "w:gz")
     tar.add(pName)
     tar.close()
-
-
-tarproject("auth")
-tarproject("crontab")
-tarproject("hikesrilanka")
-tarproject("hyperload")
-tarproject("hyqd")
-tarproject("hytcpd")
-tarproject("picpuk")
-tarproject("ukrainianside")
+    
+def tarprojects():
+    tarproject("auth")
+    tarproject("crontab")
+    tarproject("hikesrilanka")
+    tarproject("hyperload")
+    tarproject("hyqd")
+    tarproject("hytcpd")
+    tarproject("picpuk")
+    tarproject("ukrainianside")
