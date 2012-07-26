@@ -5,20 +5,37 @@ import os
 import os.path
 
 
-now = datetime.datetime.now().strftime("%Y-%m-%d")
-backupBasedir = "/mnt/backup/content/"
-picpukBasedir = "/home/www/"
+import common
+
+
+wwwBasedir = "/home/www/"
 pName = "picpuk"
 
 
 def tarpics():
-    os.chdir(picpukBasedir + pName)
+    os.chdir(wwwBasedir + pName)
     
-    if not os.path.isdir(backupBasedir + pName):
-        os.mkdir(backupBasedir + pName)
+    if not os.path.isdir(common.backupContentDir + pName):
+        os.mkdir(common.backupContentDir + pName)
     
-    pTar = backupBasedir + pName + "/pics_" + now + ".tar.gz"
+    pTar = common.backupContentDir + pName + "/pics_" + common.now + ".tar.gz"
 
     tar = tarfile.open(pTar, "w:gz")
     tar.add("pics")
     tar.close()
+    
+def tardb():
+    if not os.path.isdir(common.backupDatabaseDir + pName):
+        os.mkdir(common.backupDatabaseDir + pName)
+    
+    pBackup = common.backupDatabaseDir + pName + "/picpuk.backup"
+    
+    subprocess.call("pg_dump -U postgres picpuk > " + pBackup, shell=True)    
+    
+    pTar = common.backupDatabaseDir + pName + "/" + common.now + ".tar.gz"
+    
+    tar = tarfile.open(pTar, "w:gz")
+    tar.add(pBackup)
+    tar.close()
+    
+    os.remove(pBackup)

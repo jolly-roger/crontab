@@ -5,6 +5,9 @@ import os
 import os.path
 
 
+import common
+
+
 now = datetime.datetime.now().strftime("%Y-%m-%d")
 backupBasedir = "/mnt/backup/git/"
 gitBasedir = "/home/git/"
@@ -16,7 +19,7 @@ def tarproject(pName):
     if not os.path.isdir(backupBasedir + pName):
         os.mkdir(backupBasedir + pName)
     
-    pTar = backupBasedir + pName + "/" + now + ".tar.gz"
+    pTar = backupBasedir + pName + "/" + common.now + ".tar.gz"
 
     tar = tarfile.open(pTar, "w:gz")
     tar.add(pName)
