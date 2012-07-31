@@ -1,8 +1,13 @@
 import gitbackup
-import picpukbackup
+import projects.picpuk as picpuk
+import projects.postfix as postfix
 
 
 gitbackup.tarprojects()
 
-picpukbackup.tarpics()
-picpukbackup.tardb()
+pPicpuk = picpuk.Picpuc()
+pPicpuk.tarpics()
+pPicpuk.tardb()
+
+pPostfix = postfix.Postfix()
+pPostfix.tardb()
