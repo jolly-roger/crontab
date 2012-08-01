@@ -12,14 +12,17 @@ class Base(object):
         if not os.path.isdir(common.backupDatabaseDir + self.pName):
             os.mkdir(common.backupDatabaseDir + self.pName)
         
-        pBackup = common.backupDatabaseDir + self.pName + "/" + self.pName + ".backup"
+        pBackupDir = common.backupDatabaseDir + self.pName + "/"
+        pBackupName =  self.pName + ".backup"
         
-        subprocess.call("pg_dump -U postgres " + self.pName + " > " + pBackup, shell=True)    
+        subprocess.call("pg_dump -U postgres " + self.pName + " > " + pBackupDir + pBackupName, shell=True)    
         
         pTar = common.backupDatabaseDir + self.pName + "/" + common.now + ".tar.gz"
         
+        os.chdir(pBackupDir)
+        
         tar = tarfile.open(pTar, "w:gz")
-        tar.add(pBackup)
+        tar.add(pBackupName)
         tar.close()
         
-        os.remove(pBackup)
+        os.remove(pBackupName)
