@@ -11,3 +11,4 @@ pPicpuk.tardb()
 
 pPostfix = postfix.Postfix()
 pPostfix.tardb()
+pPostfix.tarmail()
