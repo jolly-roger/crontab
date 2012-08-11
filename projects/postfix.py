@@ -12,10 +12,13 @@ class Postfix(projects.base.Base):
         self.mailBasedir = '/home'
         
     def tarmail(self):
+        prevUid = os.geteuid()
+        os.seteuid(common.mailerUid)
+        
         os.chdir(self.mailBasedir)
         
         pTar = common.backupMailDir + "/" + common.now + ".tar.gz"
     
-        tar = tarfile.open(pTar, "w:gz")
-        tar.add("mailer")
-        tar.close()
+        common.writeDirToTar(pTar, 'mailer')
+        
+        os.seteuid(prevUid)

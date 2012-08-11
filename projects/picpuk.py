@@ -20,6 +20,4 @@ class Picpuk(projects.base.Base):
         
         pTar = common.backupContentDir + self.pName + "/pics_" + common.now + ".tar.gz"
     
-        tar = tarfile.open(pTar, "w:gz")
-        tar.add("pics")
-        tar.close()
+        common.writeDirToTar(pTar, 'pics')

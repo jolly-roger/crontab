@@ -21,8 +21,6 @@ class Base(object):
         
         os.chdir(pBackupDir)
         
-        tar = tarfile.open(pTar, "w:gz")
-        tar.add(pBackupName)
-        tar.close()
+        common.writeDirToTar(pTar, pBackupName)
         
         os.remove(pBackupName)
