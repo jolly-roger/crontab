@@ -10,9 +10,9 @@ backupDatabaseDir = backupBasedir + "database/"
 backupMailDir = backupBasedir + 'mail'
 
 mailerUid = 5003
-mailerGid = 5003
 crontabUid = 1004
 crontabGid = 5004
+picpukUid = 1002
 
 
 def writeDirToTar(pTar, dirName):

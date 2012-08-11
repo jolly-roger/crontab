@@ -13,6 +13,9 @@ class Picpuk(projects.base.Base):
         self.pName = "picpuk"
     
     def tarpics(self):
+        prevUid = os.geteuid()
+        os.seteuid(common.picpukUid)
+        
         os.chdir(self.wwwBasedir + self.pName)
         
         if not os.path.isdir(common.backupContentDir + self.pName):
@@ -21,3 +24,5 @@ class Picpuk(projects.base.Base):
         pTar = common.backupContentDir + self.pName + "/pics_" + common.now + ".tar.gz"
     
         common.writeDirToTar(pTar, 'pics')
+        
+        os.seteuid(prevUid)
