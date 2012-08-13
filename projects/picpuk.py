@@ -14,7 +14,7 @@ class Picpuk(projects.base.Base):
     
     def tarpics(self):
         prevUid = os.geteuid()
-        os.seteuid(common.picpukUid)
+        os.seteuid(common.wwwUid)
         
         os.chdir(self.wwwBasedir + self.pName)
         
