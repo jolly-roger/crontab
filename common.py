@@ -16,15 +16,20 @@ wwwUid = 1002
 
 
 def writeDirToTar(pTar, dirName):
-    prevGids = os.getresgid()
-    prevUids = os.getresuid()
+    #prevGids = os.getresgid()
+    #prevUids = os.getresuid()
+    #
+    #os.setresgid(prevGids[0], crontabGid, crontabGid)
+    #os.setresuid(prevUids[0], crontabUid, crontabUid)
     
-    os.setresgid(prevGids[0], crontabGid, crontabGid)
-    os.setresuid(prevUids[0], crontabUid, crontabUid)
+    prevUid = os.geteuid()
+    os.seteuid(crontabUid)
     
     tar = tarfile.open(pTar, "w:gz")
     tar.add(dirName)
     tar.close()
     
-    os.setresgid(*prevGids)
-    os.setresuid(*prevUids)
+    os.seteuid(prevUid)
+    
+    #os.setresgid(*prevGids)
+    #os.setresuid(*prevUids)
