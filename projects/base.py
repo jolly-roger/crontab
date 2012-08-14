@@ -21,6 +21,6 @@ class Base(object):
         
         os.chdir(pBackupDir)
         
-        common.writeDirToTar(pTar, pBackupName)
+        common.writeDirToTar(pTar, pBackupName, common.postgresUid)
         
         os.remove(pBackupName)

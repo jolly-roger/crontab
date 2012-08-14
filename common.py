@@ -13,9 +13,10 @@ mailerUid = 5003
 crontabUid = 1004
 crontabGid = 5004
 wwwUid = 1002
+postgresUid = 88
 
 
-def writeDirToTar(pTar, dirName):
+def writeDirToTar(pTar, dirName, rUid):
     #prevGids = os.getresgid()
     #prevUids = os.getresuid()
     #
@@ -29,7 +30,13 @@ def writeDirToTar(pTar, dirName):
     
     os.seteuid(prevUid)
     
+    prevUid = os.geteuid(rUid)
+    os.seteuid()
+    
     tar.add(dirName)
+    
+    os.seteuid(prevUid)
+    
     tar.close()
     
     
