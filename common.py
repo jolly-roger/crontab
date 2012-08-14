@@ -14,15 +14,19 @@ crontabUid = 1004
 crontabGid = 5004
 wwwUid = 1002
 postgresUid = 88
+gitUid = 1001
 
+
+def makeDir(dirName):
+    prevUid = os.geteuid()
+    os.seteuid(crontabUid)
+    
+    if not os.path.isdir(dirName):
+        os.mkdir(dirName)
+        
+    os.seteuid(prevUid)
 
 def writeDirToTar(pTar, dirName, rUid):
-    #prevGids = os.getresgid()
-    #prevUids = os.getresuid()
-    #
-    #os.setresgid(prevGids[0], crontabGid, crontabGid)
-    #os.setresuid(prevUids[0], crontabUid, crontabUid)
-    
     prevUid = os.geteuid()
     os.seteuid(crontabUid)
     
@@ -38,8 +42,3 @@ def writeDirToTar(pTar, dirName, rUid):
     os.seteuid(prevUid)
     
     tar.close()
-    
-    
-    
-    #os.setresgid(*prevGids)
-    #os.setresuid(*prevUids)

@@ -1,5 +1,4 @@
 import subprocess
-import tarfile
 import os
 import os.path
 
@@ -9,8 +8,7 @@ import common
 
 class Base(object):
     def tardb(self):
-        if not os.path.isdir(common.backupDatabaseDir + self.pName):
-            os.mkdir(common.backupDatabaseDir + self.pName)
+        common.makeDir(common.backupDatabaseDir + self.pName)
         
         pBackupDir = common.backupDatabaseDir + self.pName + "/"
         pBackupName =  self.pName + ".backup"
