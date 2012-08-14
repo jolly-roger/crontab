@@ -26,7 +26,7 @@ class Picpuk(projects.base.Base):
         #common.writeDirToTar(pTar, 'pics')
         
         prevUid1 = os.geteuid()
-        os.seteuid(crontabUid)
+        os.seteuid(common.crontabUid)
         
         tar = tarfile.open(pTar, "w:gz")
         
