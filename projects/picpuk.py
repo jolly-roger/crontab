@@ -13,8 +13,8 @@ class Picpuk(projects.base.Base):
         self.pName = "picpuk"
     
     def tarpics(self):
-        prevUid = os.geteuid()
-        os.seteuid(common.wwwUid)
+        #prevUid = os.geteuid()
+        #os.seteuid(common.wwwUid)
         
         os.chdir(self.wwwBasedir + self.pName)
         
@@ -25,4 +25,4 @@ class Picpuk(projects.base.Base):
     
         common.writeDirToTar(pTar, 'pics')
         
-        os.seteuid(prevUid)
+        #os.seteuid(prevUid)
