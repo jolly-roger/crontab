@@ -30,7 +30,7 @@ def writeDirToTar(pTar, dirName, rUid):
     
     os.seteuid(prevUid)
     
-    prevUid = os.geteuid(rUid)
+    prevUid = os.seteuid(rUid)
     os.seteuid()
     
     tar.add(dirName)
