@@ -23,6 +23,19 @@ class Picpuk(projects.base.Base):
         
         pTar = common.backupContentDir + self.pName + "/pics_" + common.now + ".tar.gz"
     
-        common.writeDirToTar(pTar, 'pics')
+        #common.writeDirToTar(pTar, 'pics')
         
-        #os.seteuid(prevUid)
+        prevUid1 = os.geteuid()
+        os.seteuid(crontabUid)
+        
+        tar = tarfile.open(pTar, "w:gz")
+        
+        os.seteuid(prevUid1)
+        
+        prevUid2 = os.geteuid()
+        os.seteuid(common.wwwUid)
+        
+        tar.add('pics')
+        tar.close()
+        
+        os.seteuid(prevUid2)

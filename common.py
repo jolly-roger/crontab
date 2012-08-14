@@ -26,10 +26,13 @@ def writeDirToTar(pTar, dirName):
     os.seteuid(crontabUid)
     
     tar = tarfile.open(pTar, "w:gz")
+    
+    os.seteuid(prevUid)
+    
     tar.add(dirName)
     tar.close()
     
-    os.seteuid(prevUid)
+    
     
     #os.setresgid(*prevGids)
     #os.setresuid(*prevUids)
