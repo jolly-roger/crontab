@@ -17,4 +17,4 @@ pPostfix = postfix.Postfix()
 pPostfix.tardb()
 pPostfix.tarmail()
 
-uatrains.Uatrains()
+#uatrains.Uatrains()
