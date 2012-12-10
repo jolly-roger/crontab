@@ -13,7 +13,8 @@ class Base(object):
         pBackupDir = common.backupDatabaseDir + self.pName + "/"
         pBackupName =  self.pName + ".backup"
         
-        subprocess.call("pg_dump -U postgres " + self.pName + " > " + pBackupDir + pBackupName, shell=True)    
+        subprocess.call("pg_dump --serializable-deferrable -U postgres " + self.pName + " > " + pBackupDir + \
+            pBackupName, shell=True)    
         
         pTar = common.backupDatabaseDir + self.pName + "/" + common.now + ".tar.gz"
         
